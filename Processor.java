@@ -8,7 +8,7 @@ public class Processor {
 	public static void main(String[] args) throws Exception {
 		
 		File inputFile = new File("C:/Users/Vinod Chokkula/workspace1/rg.eclipse.examples.helloworld/src/CacheController/Input.txt");
-		
+		CPUtoL1Queue cl1=new CPUtoL1Queue();
 		Scanner sc;
 		sc = new Scanner(inputFile);
 		L1Controller l1c=new L1Controller();
@@ -17,8 +17,9 @@ public class Processor {
 		{
 			String line = sc.nextLine();
 			l1c.instructionSplit(line);
+			cl1.Queue.add(line);
 		}
-		l1c.ProcessData();
+		cl1.CheckL1C();
 			sc.close();
 		
 	} 
