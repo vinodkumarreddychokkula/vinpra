@@ -9,6 +9,7 @@ public class Memory {
 	public   Memory(){
 		
 		memoryMapping.put("00000000000000000","Advance Computer");
+		memoryMapping.put("10000000000000000","Virat Kohli");
 		
 	}
 	public String getdata(String A){

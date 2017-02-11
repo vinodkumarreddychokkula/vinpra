@@ -29,22 +29,36 @@ public class L1Controller {
 
 	public void ProcessData() {
 		for (String i : address) {
-			int calindex = Integer.parseInt(i.substring(0, 1));
-			if (l1cMap.isEmpty()) {
+			//int calindex = Integer.parseInt(i.substring(0, 1));
+			if (l1cMap.isEmpty() ) {
 				Memory m = new Memory();
 				String value = m.getdata(i);
 				// System.out.println(value);
 				Block b = new Block();
 				b.validBit = true;
-				
+				//int arraySize=l1cMap.size();
 				l.l1ddata.put(i.substring(0, 1), value);
 				l1cMap.put(i.substring(0, 1), b);
-				System.out.println("data from main "+ value);
+				System.out.println("Miss in L1, Miss in L2, data from main "+ value);
+		
+			}
+			
+			else if (! l1cMap.isEmpty() && ! l1cMap.containsKey(i.substring(0, 1)) ) {
+				Memory m = new Memory();
+				String value = m.getdata(i);
+				// System.out.println(value);
+				Block b = new Block();
+				b.validBit = true;
+				//int arraySize=l1cMap.size();
+				l.l1ddata.put(i.substring(0, 1), value);
+				l1cMap.put(i.substring(0, 1), b);
+				System.out.println("Miss in L1, Miss in L2, Data from main "+ value);
 			}
 			else if (l1cMap.containsKey(i.substring(0, 1))){
+				
 				Block a=l1cMap.get(i.substring(0, 1));
 				if(a.validBit){
-					System.out.println("Data from L1 "+ l.l1ddata.get(i.substring(0, 1)));
+					System.out.println("Hit Data from L1 "+ l.l1ddata.get(i.substring(0, 1)));
 				}
 				
 				
