@@ -26,29 +26,32 @@ public class L2Controller {
 		instruction.add(vals[0]);
 		variable.add(vals[2]);
 		address.add(vals[1]);
-		String k=ProcessData();
+		System.out.println("Checking in L2");
+		String k=ProcessData();	
+		System.out.println("Value returning from L2 to L1"+k);
 	return k;
 	}
 
 	public String ProcessData() {
-		System.out.println("i am process data of L2");
+		//System.out.println("i am process data of L2");
 		for (String i : address) {
 			//int calindex = Integer.parseInt(i.substring(0, 1));
 			if (l2cMap.isEmpty()) {
-				System.out.println("i am process data of L2 to main");
+				System.out.println("Not in L2");
 				Memory m = new Memory();
 				String value = m.getdata(i);
 				//System.out.println(value);
 				Block b = new Block();
 				b.validBit = true;
 			
-				l.l2ddata.put(i.substring(0, 1), value);
-				l2cMap.put(i.substring(0, 1), b);
-				System.out.println("data from main "+ value);
+				l.l2ddata.put(i.substring(0, 7), value);
+				l2cMap.put(i.substring(0, 7), b);
+				//System.out.println("appended");
+			System.out.println("miss in l2, data from main "+l.l2ddata);
 				
 			return value;
 			}
-			else if(! l2cMap.isEmpty() && ! l2cMap.containsKey(i.substring(0, 1)))
+			else if(! l2cMap.isEmpty() && ! l2cMap.containsKey(i.substring(0, 7)))
 			{
 				
 				Memory m = new Memory();
@@ -57,18 +60,18 @@ public class L2Controller {
 				Block b = new Block();
 				b.validBit = true;
 			
-				l.l2ddata.put(i.substring(0, 1), value);
-				l2cMap.put(i.substring(0, 1), b);
+				l.l2ddata.put(i.substring(0, 7), value);
+				l2cMap.put(i.substring(0, 7), b);
 				System.out.println("data from main "+ value);
 				
 				
 				
 				
 			}
-			else if (l2cMap.containsKey(i.substring(0, 1))){
-				Block a=l2cMap.get(i.substring(0, 1));
+			else if (l2cMap.containsKey(i.substring(0, 7))){
+				Block a=l2cMap.get(i.substring(0, 7));
 				if(a.validBit){
-					System.out.println("Hit Data from L2 "+ l.l2ddata.get(i.substring(0, 1)));
+					System.out.println("Hit Data from L2 "+ l.l2ddata.get(i.substring(0, 7)));
 				}
 				
 				
@@ -85,7 +88,9 @@ public class L2Controller {
 			 * m.memoryMapping.get(address).toString());
 			 */
 			}
+		System.out.println("L2$$"+l.l2ddata);
 return "0";
+
 	}
 }
 	/*public String getdata(address : i){

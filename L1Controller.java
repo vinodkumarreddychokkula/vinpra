@@ -26,39 +26,37 @@ public class L1Controller {
 		variable.add(vals[2]);
 		address.add(vals[1]);
 	}
-
+	L2Controller l2 = new L2Controller();
 	public void ProcessData() {
 		for (String i : address) {
 			//int calindex = Integer.parseInt(i.substring(0, 1));
 			if (l1cMap.isEmpty() ) {
-				System.out.println("Miss in L1, Hit in L2, data from L2 " );
-				
-				L2Controller l2 = new L2Controller();
-				
-			String k=l2.instructionSplit(S);
-				l.l1ddata.put(i.substring(0, 1), k);
-				
-				
-				
+				System.out.println("Miss in L1 " );
+				String k = l2.instructionSplit(S);
+				//System.out.println("");
+				Block b = new Block();
+				b.validBit = true;
+				l.l1ddata.put(i.substring(0, 5), k);
+				l1cMap.put(i.substring(0, 5), b);
 			}
 			
-			else if (! l1cMap.isEmpty() && ! l1cMap.containsKey(i.substring(0, 1)) ) {
+			else if (! l1cMap.isEmpty() && ! l1cMap.containsKey(i.substring(0, 5)) ) {
 				Memory m = new Memory();
 				String value = m.getdata(i);
 				// System.out.println(value);
 				Block b = new Block();
 				b.validBit = true;
 				//int arraySize=l1cMap.size();
-				l.l1ddata.put(i.substring(0, 1), value);
-				l1cMap.put(i.substring(0, 1), b);
-				System.out.println("Miss in L1, Miss in L2, Data from L2 "+ value);
+				l.l1ddata.put(i.substring(0, 5), value);
+				l1cMap.put(i.substring(0, 5), b);
+				System.out.println("Miss in L1, Checking in L2 "+ value);
 			}
-			else if (l1cMap.containsKey(i.substring(0, 1))){
+			else if (l1cMap.containsKey(i.substring(0, 5))){
 				
-				Block a=l1cMap.get(i.substring(0, 1));
+				Block a=l1cMap.get(i.substring(0, 5));
 				if(a.validBit){
 					
-					System.out.println("Hit Data from L1 "+ l.l1ddata.get(i.substring(0, 1)));
+					System.out.println("Hit Data from L1 "+ l.l1ddata.get(i.substring(0, 5)));
 				}
 				
 				
@@ -75,7 +73,9 @@ public class L1Controller {
 			 * m.memoryMapping.get(address).toString());
 			 *///
 }
-
+		L2Data l2=new L2Data();
+		System.out.println("+++++====="+l.l1ddata);
+		//System.out.println("&&&&&%%%%%"+l2.l.l2ddata);
 	}
 }
 
