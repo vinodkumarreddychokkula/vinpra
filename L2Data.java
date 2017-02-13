@@ -6,7 +6,7 @@ public HashMap<String,String> l2ddata= new HashMap<String,String>();
 public L2Data(){
 		
 		
-		l2ddata.put("00000000000000000", "Advance Computer" );
+		//l2ddata.put("00000000000000000", "Advance Computer" );
 	
 }
 
