@@ -1,3 +1,5 @@
+package parallelCache;
+
 
 public class Block {
 
@@ -7,7 +9,7 @@ public class Block {
 		Boolean dirtyBit;
 		String tag;
 		String location;
-		
+	
 
 	}
 
